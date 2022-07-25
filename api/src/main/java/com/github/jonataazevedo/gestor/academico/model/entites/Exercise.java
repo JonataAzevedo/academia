@@ -24,21 +24,15 @@ public class Exercise {
 
 	private int version;
 
-	LocalDateTime update_date;
-	LocalDateTime creation_date;
+	private LocalDateTime updateDate;
+	private LocalDateTime creationDate;
 
-	public Exercise() {
-
+	public int getId() {
+		return id;
 	}
 
-	public Exercise(String name, int sets, int reps, int version, LocalDateTime creation_date,
-			LocalDateTime update_date) {
-		this.name = name;
-		this.sets = sets;
-		this.reps = reps;
-		this.version = version;
-		this.creation_date = creation_date;
-		this.update_date = update_date;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -72,4 +66,21 @@ public class Exercise {
 	public void setVersion(int version) {
 		this.version = version;
 	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public LocalDateTime getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
+	}
+
 }

@@ -1,13 +1,20 @@
 package com.github.jonataazevedo.gestor.academico.model.entites;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 
+@Entity(name = "t_user")
 public class User {
 
 	@Id
@@ -15,42 +22,71 @@ public class User {
 	private int id;
 
 	@NotBlank
-	@Max(100)
-	private String nome;
+	private String name;
+
+	private String username;
+
+	private String password;
 
 	@NotBlank
-	@Max(11)
 	private String cpf;
 
-	private String user_type;
-
+	@Enumerated(EnumType.STRING)
+	private UserType userType;
+	
+	@Version
 	private int version;
 
-	LocalDateTime birth_date;
-	LocalDateTime creation_date;
-	LocalDateTime update_date;
+	private Date birthDate;
+
+	private LocalDateTime creationDate;
+
+	private LocalDateTime updateDate;
 
 	public User() {
-
+		super();
+	}
+	
+	@PreUpdate
+	public void preUpdate() {
+		this.setUpdateDate(LocalDateTime.now());
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		this.setCreationDate(LocalDateTime.now());
 	}
 
-	public User(String nome, String cpf, String user_type, int version, LocalDateTime birth_date,
-			LocalDateTime creation_date, LocalDateTime update_date) {
-		this.nome = nome;
-		this.cpf = cpf;
-		this.user_type = user_type;
-		this.version = version;
-		this.birth_date = birth_date;
-		this.creation_date = creation_date;
-		this.update_date = update_date;
+	public String getUsername() {
+		return username;
 	}
 
-	public String getNome() {
-		return nome;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCpf() {
@@ -61,12 +97,12 @@ public class User {
 		this.cpf = cpf;
 	}
 
-	public String getUser_type() {
-		return user_type;
+	public UserType getUserType() {
+		return userType;
 	}
 
-	public void setUser_type(String user_type) {
-		this.user_type = user_type;
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 	public int getVersion() {
@@ -77,16 +113,28 @@ public class User {
 		this.version = version;
 	}
 
-	public LocalDateTime getBirth_date() {
-		return birth_date;
+	public Date getBirthDate() {
+		return birthDate;
 	}
 
-	public LocalDateTime getCreation_date() {
-		return creation_date;
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
 	}
 
-	public LocalDateTime getUpdate_date() {
-		return update_date;
+	public LocalDateTime getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
+	}
+
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
 	}
 
 }

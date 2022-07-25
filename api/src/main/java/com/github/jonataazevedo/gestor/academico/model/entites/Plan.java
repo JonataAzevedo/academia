@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Min;
+import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -16,39 +16,31 @@ public class Plan {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private int id_user;
-
 	@NotBlank
 	private String name;
 
-	@Min(100)
+	@NotBlank
 	private String description;
 
-	@Min(100)
-	private String muscle_group;
-
+	@NotBlank
+	private String muscleGroup;
+	
+	@Version
 	private int version;
+	
+	private LocalDateTime updateDate;
+	private LocalDateTime creationDate;
 
-	LocalDateTime update_date;
-	LocalDateTime creation_date;
+	public Plan() {
 
-	public Plan(int id_user, String name, String description, String muscle_group, int version,
-			LocalDateTime creation_date, LocalDateTime update_date) {
-		this.id_user = id_user;
-		this.name = name;
-		this.description = description;
-		this.muscle_group = muscle_group;
-		this.version = version;
-		this.creation_date = creation_date;
-		this.update_date = update_date;
 	}
 
-	public int getId_user() {
-		return id_user;
+	public int getId() {
+		return id;
 	}
 
-	public void setId_user(int id_user) {
-		this.id_user = id_user;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -67,12 +59,12 @@ public class Plan {
 		this.description = description;
 	}
 
-	public String getMuscle_group() {
-		return muscle_group;
+	public String getMuscleGroup() {
+		return muscleGroup;
 	}
 
-	public void setMuscle_group(String muscle_group) {
-		this.muscle_group = muscle_group;
+	public void setMuscleGroup(String muscleGroup) {
+		this.muscleGroup = muscleGroup;
 	}
 
 	public int getVersion() {
@@ -83,12 +75,20 @@ public class Plan {
 		this.version = version;
 	}
 
-	public LocalDateTime getUpdate_date() {
-		return update_date;
+	public LocalDateTime getUpdateDate() {
+		return updateDate;
 	}
 
-	public LocalDateTime getCreation_date() {
-		return creation_date;
+	public void setUpdateDate(LocalDateTime updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	public LocalDateTime getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(LocalDateTime creationDate) {
+		this.creationDate = creationDate;
 	}
 
 }
