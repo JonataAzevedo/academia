@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -21,11 +24,23 @@ public class Exercise {
 	private int sets;
 
 	private int reps;
-
+	
+	@Version
 	private int version;
 
 	private LocalDateTime updateDate;
+	
 	private LocalDateTime creationDate;
+	
+	@PreUpdate
+	public void preUpdate() {
+		this.setUpdateDate(LocalDateTime.now());
+	}
+	
+	@PrePersist
+	public void prePersist() {
+		this.setCreationDate(LocalDateTime.now());
+	}
 
 	public int getId() {
 		return id;

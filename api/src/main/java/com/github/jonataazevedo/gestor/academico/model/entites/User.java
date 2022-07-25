@@ -44,7 +44,7 @@ public class User {
 	private LocalDateTime updateDate;
 
 	public User() {
-		super();
+
 	}
 	
 	@PreUpdate
