@@ -7,5 +7,6 @@ import com.github.jonataazevedo.gestor.academico.model.entites.Exercise;
 
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, Integer> {
-
+	
+	public Iterable<Exercise> findByNameContainingIgnoreCase(String name);
 }

@@ -11,7 +11,7 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 import javax.validation.constraints.NotBlank;
 
-@Entity
+@Entity(name = "t_exercise")
 public class Exercise {
 
 	@Id

@@ -38,7 +38,7 @@ public class UserController {
 		return ResponseEntity.ok(user);
 	}
 
-	@GetMapping("/cliente") // obter lista de cadastros
+	@GetMapping("/cliente/") // obter lista de cadastros
 	public ResponseEntity<Iterable<User>> obterUsuarios() {
 		return ResponseEntity.ok(userRepository.findAll());
 	}
